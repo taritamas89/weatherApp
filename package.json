@@ -1,0 +1,22 @@
+{
+  "name": "weather-application",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "lite-server"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/angular/angular.io/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "angular": "^1.5.9",
+    "angular-animate": "^1.5.9",
+    "angular-aria": "^1.5.9",
+    "angular-material": "^1.1.1",
+    "angular-route": "^1.5.9",
+    "lite-server": "^2.2.2"
+  }
+}

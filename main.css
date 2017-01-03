@@ -1,0 +1,25 @@
+body .city-item {
+    min-width: 300px;
+}
+
+body .temperature-item {
+    min-width: 100px;
+}
+
+.header .md-secondary-container {
+    margin: auto;
+}
+
+#loadingIndicator {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(0, 0, 0, .7);
+}
+
+#loadingIndicator md-progress-circular {
+    margin: auto;
+}

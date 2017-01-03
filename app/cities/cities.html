@@ -1,0 +1,28 @@
+<div id="loadingIndicator" ng-if="!vm.isTemperatureLoaded" layout="column" layout-sm="column" layout-align="space-around">
+    <md-progress-circular class="md-hue-1" md-mode="indeterminate" md-diameter="96"></md-progress-circular>
+</div>
+<div layout="column">
+    <md-toolbar layout="row" class="md-hue-7">
+        <div layout-align="center center" class="md-toolbar-tools">
+            <span>List of Cities</span>
+        </div>
+    </md-toolbar>
+
+    <md-content>
+        <md-list ng-cloak>
+            <md-list-item class="header">
+                <h4 class="city-item">City</h4>
+                <h4 class="temperature-item">Current</h4>
+                <h4 class="md-secondary">Actions</h4>
+            </md-list-item>
+            <md-list-item ng-repeat="city in vm.cities">
+                <!-- <div>{{city._id}}</div> -->
+                <p class="city-item">{{city.name}} <span ng-if="city.criteria || city.criteria === 0">{{city.criteria}} &deg;C</span></p>
+                <p class="temperature-item"><span ng-if="city.temperature">{{city.temperature}} &deg;C</span></p>
+                <!-- <h4>{{city.country}}</h4> -->
+                <md-button class="md-secondary" ng-click="vm.addCriteria($event, city)">Add limit</md-button>
+                <md-button class="md-secondary" ng-click="vm.removeCriteria(city)">Remove limit</md-button>
+            </md-list-item>
+        </md-list>
+    </md-content>
+</div>

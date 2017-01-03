@@ -1,0 +1,36 @@
+<md-dialog layout-padding>
+    <md-dialog-content>
+        <h2>Set up a new criteria</h2>
+        <div class="city">
+            <h4>City name:
+                <span>{{dialog.city.name}}</span>
+            </h4>
+            <p>Country code:
+                <span>{{dialog.city.country}}</span>
+            </p>
+            <p>Current temperature:
+                <md-progress-circular ng-disabled="dialog.currentTemperature !== null" class="md-hue-2" md-diameter="20px"></md-progress-circular>
+                <span ng-if="dialog.currentTemperature !== null">{{dialog.currentTemperature}}
+                    &deg;C</span>
+            </p>
+        </div>
+        <form name="criteriaForm">
+            <md-input-container class="md-block" flex-gt-sm>
+                <label>Temperature in &deg;C</label>
+                <!-- ng-pattern="/^\d+$/" -->
+                <input name="temperatureCriteria" ng-model="dialog.temperatureCriteria" type="number" required>
+
+                <!-- <div ng-messages="criteriaForm.temperatureCriteria.$error" multiple md-auto-hide="true"> -->
+                    <!-- <div ng-message="required">You must enter the temperature.</div> -->
+                    <!-- <div ng-message="pattern" class="my-message">That doesn't look like a valid temperature.</div> -->
+                    <!-- <div ng-message="md-maxlength">Given temperature is too long.</div> -->
+                <!-- </div> -->
+            </md-input-container>
+
+        </md-dialog-content>
+        <md-dialog-actions>
+            <md-button ng-click="dialog.cancel()" class="md-primary">Cancel</md-button>
+            <md-button ng-disabled="criteriaForm.temperatureCriteria.$invalid" ng-click="dialog.addCriteria()" class="md-primary">Add criteria</md-button>
+        </md-dialog-actions>
+    </form>
+</md-dialog>
