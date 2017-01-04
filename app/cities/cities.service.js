@@ -27,7 +27,7 @@
          */
         function getCitiesFromJson() {
             return $http({
-                    url: '/assets/city.example2.json',
+                    url: '/assets/city.list.custom.json',
                     method: 'GET',
                     transformResponse: [function(data) {
                         var cities = data.split('\n');
