@@ -23,3 +23,7 @@ body .temperature-item {
 #loadingIndicator md-progress-circular {
     margin: auto;
 }
+
+.help-block {
+    color: red;
+}

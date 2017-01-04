@@ -7,7 +7,8 @@
             cancel: cancel,
             addCriteria: addCriteria,
             city: city,
-            currentTemperature: null
+            currentTemperature: null,
+            temperatureCriteria: null
         };
         angular.extend(vm, publicProperties);
 
@@ -17,10 +18,11 @@
 
         function addCriteria() {
             console.log("ADd criteria: ", vm.temperatureCriteria);
+            console.log("old criteria: ", vm.city.criteria);
 
-            if (localStorage.getItem(vm.city._id) !== null) {
+            if (localStorage.getItem(vm.city._id) !== null && (vm.city.criteria != vm.temperatureCriteria)) {
                 var confirm = $mdDialog.confirm()
-                    .title('Would you like to change the current limit? (' + vm.city.criteria +') Celsius')
+                    .title('Would you like to change the current limit? (' + vm.city.criteria +' Celsius)')
                     .textContent('New limit for ' + vm.city.name + ' city: ' + vm.temperatureCriteria + ' Celsius')
                     .ok('Yes')
                     .cancel('No');
@@ -54,7 +56,9 @@
         }
         // function calls
         console.log(vm.city);
-        vm.temperatureCriteria = parseFloat(vm.city.criteria);
+        if(vm.city.criteria){
+            vm.temperatureCriteria = parseFloat(vm.city.criteria);
+        }
         setTemperature();
     }
 

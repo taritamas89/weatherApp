@@ -16,15 +16,20 @@
         </div>
         <form name="criteriaForm">
             <md-input-container class="md-block" flex-gt-sm>
-                <label>Temperature in &deg;C</label>
+                <label>Temperature in &deg;C (2 decimal)</label>
                 <!-- ng-pattern="/^\d+$/" -->
-                <input name="temperatureCriteria" ng-model="dialog.temperatureCriteria" type="number" required>
+                <!-- <input name="temperatureCriteria" ng-model="dialog.temperatureCriteria" type="number" required> -->
 
-                <!-- <div ng-messages="criteriaForm.temperatureCriteria.$error" multiple md-auto-hide="true"> -->
-                    <!-- <div ng-message="required">You must enter the temperature.</div> -->
-                    <!-- <div ng-message="pattern" class="my-message">That doesn't look like a valid temperature.</div> -->
-                    <!-- <div ng-message="md-maxlength">Given temperature is too long.</div> -->
-                <!-- </div> -->
+                <input type="number" name="temperatureCriteria" ng-model="dialog.temperatureCriteria" ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" required max="100" />
+                <span class="help-block" ng-show="!criteriaForm.temperatureCriteria.$valid">
+                        Invalid!
+                </span>
+
+                <!-- <div ng-messages="criteriaForm.temperatureCriteria.$error" multiple md-auto-hide="true">
+                    <div ng-message="required">You must enter the temperature.</div>
+                    <div ng-message="pattern" class="my-message">That doesn't look like a valid temperature.</div>
+                    <div ng-message="md-maxlength">Given temperature is too long.</div>
+                </div> -->
             </md-input-container>
 
         </md-dialog-content>

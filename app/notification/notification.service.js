@@ -42,10 +42,6 @@
             }
         }
 
-        function temperatureApiPolling() {
-
-        }
-
         return srvc;
     }
 

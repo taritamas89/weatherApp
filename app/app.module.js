@@ -5,6 +5,7 @@
         .module('app', [
             'ngMaterial',
             'ngRoute',
+            'ngCookies',
             'app.cities',
             'app.dialog',
             'app.notification'
