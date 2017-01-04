@@ -10,7 +10,7 @@
             'app.dialog',
             'app.notification'
         ])
-        .constant('APP_ID', '6b674fa53aa09143381e38d57c81f333');
+        .constant('APP_ID', '6b674fa53aa09143381e38d57c81f333'); //the application ID for OpenWeatherMap
 
 
 })();

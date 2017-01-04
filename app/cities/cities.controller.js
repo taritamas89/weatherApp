@@ -1,6 +1,14 @@
 (function() {
     'use strict';
 
+    /**
+     * Controller to handle list of cities.
+     * @param {Object} citiesService       Service of Cities
+     * @param {Object} $mdDialog           Angular material dialog service.
+     * @param {Object} notificationService Service of Notifications
+     * @param {Object} $interval           Angular service for window.setInterval
+     * @param {Object} $cookies            Angular service for cookie handling
+     */
     function CitiesController(citiesService, $mdDialog, notificationService, $interval, $cookies) {
         var vm = this;
         var publicProperties = {
@@ -10,6 +18,10 @@
         };
         angular.extend(vm, publicProperties);
 
+        /**
+         * Get cities from a built in json file and also get temperatures for cities.
+         * Start an interval to updta temperatures.
+         */
         function getCities() {
             citiesService.getCitiesFromJson().then(function(data) {
                 vm.cities = data;
@@ -20,10 +32,12 @@
                 //call every 10 sec
                 var interval = $interval(getTemperatureForCities, 60000);
                 //TODO: cancel the interval
-
             });
         }
 
+        /**
+         * Get temperatures for given cities and hide the loading bar. Call the checklimits if the data is provided.
+         */
         function getTemperatureForCities() {
             console.log("GET TEMPERATURE");
 
@@ -39,21 +53,12 @@
                     vm.isTemperatureLoaded = true;
                 }
             );
-
-            // notificationService.getTemperatureByGivenCities(vm.cities).then(
-            //     function(data) {
-            //         console.log("success");
-            //         vm.isTemperatureLoaded = true;
-            //
-            //         // checkLimits();
-            //     },
-            //     function() {
-            //         console.log("error500");
-            //         vm.isTemperatureLoaded = true;
-            //     }
-            // );
         }
 
+        /**
+         * Check the preset limits for the given cities and show a notification if the limit is reached.
+         * Save the sate is the notification has been triggered for a city.
+         */
         function checkLimits() {
             console.log("checking limits");
             if (localStorage.length) {
@@ -75,6 +80,10 @@
             }
         }
 
+        /**
+         * Show an alert dialog with some data of a city.
+         * @param {Object} city Represent a city.
+         */
         function showLimitReachedDialog(city) {
             var alert = $mdDialog.alert()
                 .title('Limit reached!')
@@ -83,6 +92,11 @@
             $mdDialog.show(alert);
         }
 
+        /**
+         * Show a custom dialog to make the user able to set criteria for a city.
+         * @param {Object} ev   Event object.
+         * @param {Object} city Represent a city.
+         */
         function addCriteria(ev, city) {
             console.log(city);
 
@@ -108,6 +122,11 @@
                 });
         }
 
+        /**
+         * Show a confirmation dialog when user wants to remove criteria.
+         * When user confirm, remove saved criteria from localStorage and remove city from cookies.
+         * @param {Object} city Represent a city.
+         */
         function removeCriteria(city) {
             var confirm = $mdDialog.confirm()
                 .title('Would you like to remove the current limit?')

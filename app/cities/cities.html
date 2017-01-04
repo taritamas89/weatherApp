@@ -21,7 +21,7 @@
                 <p class="temperature-item"><span ng-if="city.temperature">{{city.temperature}} &deg;C</span></p>
                 <!-- <h4>{{city.country}}</h4> -->
                 <md-button class="md-secondary" ng-click="vm.addCriteria($event, city)">Add limit</md-button>
-                <md-button class="md-secondary" ng-click="vm.removeCriteria(city)">Remove limit</md-button>
+                <md-button class="md-secondary" ng-disabled="!city.criteria" ng-click="vm.removeCriteria(city)">Remove limit</md-button>
             </md-list-item>
         </md-list>
     </md-content>
